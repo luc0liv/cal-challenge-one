@@ -6,7 +6,7 @@ export async function getProducts(searchTerm: string) {
     .get(
       `https://mystique-v2-americanas.juno.b2w.io/autocomplete?content=${searchTerm
         .normalize("NFD")
-        .replace(/[^a-zA-Zs ]/g, "")}&source=nanook`
+        .replace(/[^a-zA-ZçÇs ]/g, "")}&source=nanook`
     )
     .then((response) => {
       return response.data.products.map((product: Product) => product.name);
