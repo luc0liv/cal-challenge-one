@@ -31,6 +31,8 @@ import { getProducts } from "../api/products";
 import { Product } from "../interfaces/products";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import Swal from "sweetalert2";
+import "sweetalert2/src/sweetalert2.scss";
 
 @Options({ components: { loading: Loading } })
 export default class SearchComponent extends Vue {
@@ -47,7 +49,11 @@ export default class SearchComponent extends Vue {
 
   async searchProducts() {
     if (this.searchTerm === "") {
-      alert("Preencha o campo de pesquisa");
+      Swal.fire({
+        title: "Preencha o campo de pesquisa!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
       return;
     }
     this.loading = true;
